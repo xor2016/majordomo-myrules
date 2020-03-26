@@ -1,0 +1,98 @@
+
+<!-- table myconditions search -->
+<p>
+<a href="?view_mode=edit_myconditions&data_source=<#DATA_SOURCE#>" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i> <#LANG_ADD#></a>
+</p>
+<table width=100% border=0><tr>
+<td valign=top>
+<!-- results -->
+[#if RESULT#]
+<!-- search results (list) -->
+<form action="?" method="post" name="frmList_myconditions" style="padding:0px" class="form">
+<table  align=center class="table table-striped">
+<thead class="thead-light">
+ <tr>
+  <td><b>Имя правила</b></td>
+  <td><b>Активно?</b></td>
+  <td><b>Связанный объект</b></td>
+  <td><b>Сравнение</b></td>
+  <td><b>Условие 1(C1)</b></td>
+  <td><b>Условие 2(С2)</b></td>
+  <td><b>Результат</b></td>
+  <td>&nbsp;</td>
+ </tr>
+</thead>
+<tbody>
+[#begin RESULT#]
+<tr style="height:52px" class="hover_btn2">
+ <td style="vertical-align:middle"
+  >
+  <b[#if ACTIVE!="1"#] style="color:DarkGray"[#else#] style="color:blue" [#endif#]>
+   [#TITLE#]
+  </a></b>
+ </td>
+ <td>
+  [#if ACTIVE!=""#]
+  [#if ACTIVE="1"#]Вкл[#else#]Выкл[#endif#]
+  [#else#]
+   &nbsp;
+  [#endif#]
+ </td>
+ <td>
+  [#if LINKED_OBJECT!="" and LINKED_PROPERTY!=""#]
+   [#LINKED_OBJECT#].[#LINKED_PROPERTY#]
+  [#else#]
+   &nbsp;
+  [#endif#]
+ </td>
+ <td>
+  [#if OPERAND!=""#]
+   [#OPERAND#]
+  [#else#]
+   &nbsp;
+  [#endif#]
+ </td>
+ <td>
+  [#if CHECK_PART!=""#]
+   [#CHECK_PART#]
+  [#else#]
+   &nbsp;
+  [#endif#]
+ </td>
+ <td>
+  [#if CHECK_PART2!=""#]
+   [#CHECK_PART2#]
+  [#else#]
+   &nbsp;
+  [#endif#]
+ </td>
+ <td>
+  [#if VALUE!=""#]
+   [#VALUE#]
+  [#else#]
+   &nbsp;
+  [#endif#]
+ </td>
+ <td style="vertical-align:middle" width="1%" nowrap>
+  <div style="width:120px">
+  [#if "<#ACTION#>"=="admin"#]
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_myconditions&id=[#ID#]" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=delete_myconditions&id=[#ID#]" onClick="return confirm('Are you sure?')" class="btn btn-default" title="Delete"><i class="glyphicon glyphicon-remove"></i></a>
+  [#endif ACTION#]
+  </div>
+ </td>
+</tr>
+[#end RESULT#]
+</tbody>
+</table>
+<input type="hidden" name="data_source" value="<#DATA_SOURCE#>">
+<input type="hidden" name="view_mode" value="multiple_myconditions">
+</form>
+<!-- / search results (list) -->
+[#else RESULT#]
+<p>
+<font color="red">No records found.</font>
+</p>
+[#endif RESULT#]
+<!-- / results -->
+</td></tr></table>

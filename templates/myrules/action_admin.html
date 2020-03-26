@@ -1,0 +1,75 @@
+[#if SET_DATASOURCE!="1"#]
+&nbsp;
+<!-- source select -->
+<ul class="nav nav-tabs">
+  <li[#if DATA_SOURCE!="myrules" && DATA_SOURCE!=""#] [#else#] class="active"[#endif#]>
+   <a href="?data_source=myrules">ПРАВИЛА</a>
+  </li>
+  <li[#if DATA_SOURCE!="myconditions"#] [#else#] class="active"[#endif#]>
+   <a href="?data_source=myconditions">УСЛОВИЯ</a>
+  </li>
+  <li[#if DATA_SOURCE!="myactions"#] [#else#] class="active"[#endif#]>
+   <a href="?data_source=myactions">ДЕЙСТВИЯ</a>
+  </li>
+</ul>
+&nbsp;<br/>
+<!-- / source select -->
+[#endif SET_DATASOURCE#]
+
+ <!-- action usual -->
+ [#if DATA_SOURCE="myrules" || DATA_SOURCE=""#]
+ <!-- table myrules search -->
+ [#if VIEW_MODE="search_myrules" || VIEW_MODE=""#]
+  [#inc myrules_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table myrules search -->
+ <!-- table myrules edit -->
+ [#if VIEW_MODE="edit_myrules"#]
+    [#inc myrules_edit_default.html#]
+   [#endif TAB#]
+ [#endif VIEW_MODE#]
+ <!-- / table myrules edit -->
+ <!-- table myrules view --> 
+ [#if VIEW_MODE="view_myrules"#]
+   [#if TAB=""#]
+    [#inc myrules_view_default.html#]
+   [#endif TAB#]
+ [#endif VIEW_MODE#]
+ <!-- / table myrules view -->
+ [#endif DATA_SOURCE#]
+ <!-- action usual -->
+ [#if DATA_SOURCE="myconditions"#]
+ <!-- table myconditions search -->
+ [#if VIEW_MODE="search_myconditions" || VIEW_MODE=""#]
+  [#inc myconditions_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table myconditions search -->
+ <!-- table myconditions edit -->
+ [#if VIEW_MODE="edit_myconditions"#]
+   [#inc myconditions_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table myconditions edit -->
+ <!-- table myconditions view --> 
+ [#if VIEW_MODE="view_myconditions"#]
+   [#inc myconditions_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table myconditions view -->
+ [#endif DATA_SOURCE#]
+ <!-- action usual -->
+ [#if DATA_SOURCE="myactions"#]
+ <!-- table myactions search -->
+ [#if VIEW_MODE="search_myactions" || VIEW_MODE=""#]
+  [#inc myactions_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table myactions search -->
+ <!-- table myactions edit -->
+ [#if VIEW_MODE="edit_myactions"#]
+   [#inc myactions_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table myactions edit -->
+ <!-- table myactions view --> 
+ [#if VIEW_MODE="view_myactions"#]
+   [#inc myactions_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table myactions view -->
+ [#endif DATA_SOURCE#]

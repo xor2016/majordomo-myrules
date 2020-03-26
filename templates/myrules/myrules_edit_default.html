@@ -1,0 +1,117 @@
+<link rel="stylesheet" href="<#ROOTHTML#>3rdparty/awesomeplete/awesomplete.css" />
+<script src="<#ROOTHTML#>3rdparty/awesomeplete/awesomplete.min.js"></script>
+<!-- Table 'myrules' edit -->
+<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
+[#if OK#]
+<div class="alert alert-success"><#LANG_DATA_SAVED#></div>
+[#endif OK#]
+[#if ERR#]
+<div class="alert alert-danger"><#LANG_FILLOUT_REQURED#></div>
+[#endif ERR#]
+<fieldset>
+[#if ID=""#]
+<legend><#LANG_NEW_RECORD#></legend>
+[#endif ID#]
+<!-- TITLE (varchar) -->
+<div class="form-group[#if ERR_TITLE#] has-error[#endif#]">
+ <label for="title" class="col-lg-3 control-label">
+ TITLE :
+ (*)
+ </label>
+ <div class="col-lg-9"><input id="title" name="title" value="[#TITLE#]" type="text" class="form-control"></div>
+</div>
+<!-- ACTIVE (varchar) -->
+<div class="form-group[#if ERR_ACTIVE#] has-error[#endif#]">
+        <label class="col-lg-3 control-label">&nbsp;</label>
+        <div class="col-lg-5">
+			<div class="checkbox">
+                <label>  
+				<input id="active" type="checkbox" name="active" value="1"[#if ACTIVE="1"#] checked[#endif#]> АКТИВНО
+				</label>
+			</div>
+		</div>
+</div>
+<!-- RULE_TEXT (varchar) -->
+<div class="form-group">
+ <label class="col-lg-3 control-label">
+ ЕСЛИ:
+ </label>
+ <div class="col-lg-4"><textarea class="form-control multi1" list="mylist1" name="rule_text" rows="5" cols="60">[#RULE_TEXT#]</textarea></div>
+
+<datalist id="mylist1">
+[#begin ALL_CONDITIONS#]<option>[#TITLE#]</option>[#end ALL_CONDITIONS#]
+</datalist>
+</div>
+<script language="javascript">
+ new Awesomplete('.multi1', {
+        filter: function(text, input) {
+                return Awesomplete.FILTER_CONTAINS(text, input.match(/[^(\( )(not )(or )(and )(!)(\) )(и )(или )]*$/)[0]);
+        },
+        replace: function(text) {
+                var before = this.input.value.match(/^.+ (\(|or |and |!|not |\)|и |или )\s*|/)[0];
+                this.input.value = before + ' ['+ text + "]";
+        }
+});
+</script>
+<!-- THEN_PART (varchar) -->
+[#if ID=""#]
+<div class="form-group">
+      <label for ="then_part" class="col-lg-3 control-label">ТО:</label>
+    <div class="col-lg-4">
+      <select name="then_part" class="form-control input-lg">
+       <option value="" default>Выберите действие</option>
+      [#begin ALL_ACTIONS#]<option value="[#TITLE#]" >[#TITLE#]</option>[#end ALL_ACTIONS#]
+      </select>
+    </div>
+</div>
+[#else#]
+<div class="form-group">
+      <label for ="then_part" class="col-lg-3 control-label">ТО:</label>
+    <div class="col-lg-4">
+      <select name="then_part" class="form-control input-lg">
+       <option value="" default>Выберите действие</option>
+      [#begin ALL_ACTIONS#]<option value="[#TITLE#]" [#if TITLE=='<#THEN_PART#>'#] selected[#endif#]>[#TITLE#]</option>[#end ALL_ACTIONS#]
+      </select>
+    </div>
+</div>
+[#endif ID#]
+<!-- ELSE_PART (varchar) -->
+[#if ID=""#]
+<div class="form-group">
+      <label for ="else_part" class="col-lg-3 control-label">ИНАЧЕ:</label>
+    <div class="col-lg-4">
+      <select name="else_part" class="form-control input-lg">
+       <option value="" default>Выберите действие</option>
+      [#begin ALL_ACTIONS#]<option value="[#TITLE#]" >[#TITLE#]</option>[#end ALL_ACTIONS#]
+      </select>
+    </div>
+</div>
+[#else#]
+<div class="form-group">
+      <label for ="else_part" class="col-lg-3 control-label">ИНАЧЕ:</label>
+    <div class="col-lg-4">
+      <select name="else_part" class="form-control input-lg">
+       <option value="" default>Выберите действие</option>
+      [#begin ALL_ACTIONS#]<option value="[#TITLE#]" [#if TITLE=='<#ELSE_PART#>'#] selected[#endif#]>[#TITLE#]</option>[#end ALL_ACTIONS#]
+      </select>
+    </div>
+</div>
+[#endif ID#]
+<div class="form-group">
+        <div class="col-lg-offset-3 col-lg-4">
+ [#if ID!=""#]
+ <button type="submit" name="subm" value="Submit" class="btn btn-primary"><#LANG_SUBMIT#></button>
+ [#else ID#]
+ <button type="submit" name="subm" value="Add" class="btn btn-primary"><#LANG_ADD#></button>
+ [#endif ID#]
+ <a href="?data_source=<#DATA_SOURCE#>" class="btn btn-default "><#LANG_CANCEL#></a>
+<input type="hidden" name="id" value="<#ID#>">
+<input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
+<input type="hidden" name="edit_mode" value="<#EDIT_MODE#>">
+<input type="hidden" name="mode" value="update">
+<input type="hidden" name="data_source" value="<#DATA_SOURCE#>">
+<input type="hidden" name="tab" value="<#TAB#>">
+        </div>
+</div>
+</fieldset>
+</form>
