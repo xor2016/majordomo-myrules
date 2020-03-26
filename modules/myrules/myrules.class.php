@@ -468,6 +468,7 @@ function processRule($rule){
 * @access public
 */
  function uninstall() {
+  //todo - убрать линки!	 
   SQLExec('DROP TABLE IF EXISTS myrules');
   SQLExec('DROP TABLE IF EXISTS myconditions');
   SQLExec('DROP TABLE IF EXISTS myactions');
