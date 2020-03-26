@@ -468,7 +468,13 @@ function processRule($rule){
 * @access public
 */
  function uninstall() {
-  //todo - убрать линки!	 
+  $rec = SQLSELECT('Select distinct LINKED_OBJECT,LINKED_PROPERTY from myconditions');
+  $total = count($rec);
+   if ($total) {
+    for($i=0;$i<$total;$i++) {
+     removeLinkedProperty($rec[$i]['LINKED_OBJECT'], $rec[$i]['LINKED_PROPERTY'], 'myrules');
+    }
+   }
   SQLExec('DROP TABLE IF EXISTS myrules');
   SQLExec('DROP TABLE IF EXISTS myconditions');
   SQLExec('DROP TABLE IF EXISTS myactions');
