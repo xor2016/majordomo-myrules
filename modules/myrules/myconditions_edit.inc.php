@@ -39,6 +39,7 @@
    $rec['CHECK_PART']=$check_part;
   //updating 'RESULT'
    global $value;
+   if($value<>'1')$value = '0'; //умолчание
    $rec['VALUE']=$value;
   //updating 'CHECK_PART2' (text)
    global $check_part2;
