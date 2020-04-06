@@ -505,11 +505,11 @@ myconditions -
  myrules: ELSE_PART varchar(255) NOT NULL DEFAULT ''
  myconditions: ID int(10) unsigned NOT NULL auto_increment
  myconditions: TITLE varchar(100) NOT NULL DEFAULT ''
- myconditions: VALUE varchar(255) NOT NULL DEFAULT ''
+ myconditions: VALUE varchar(255) NOT NULL DEFAULT '0'
  myconditions: LINKED_OBJECT varchar(100) NOT NULL DEFAULT ''
  myconditions: LINKED_PROPERTY varchar(100) NOT NULL DEFAULT ''
  myconditions: ACTIVE INT( 3 ) NOT NULL DEFAULT '0'
- myconditions: RESULT varchar(255) NOT NULL DEFAULT ''
+ myconditions: RESULT varchar(255) NOT NULL DEFAULT '0'
  myconditions: CHECK_PART varchar(255) NOT NULL DEFAULT ''
  myconditions: CHECK_PART2 varchar(255) NOT NULL DEFAULT ''
  myconditions: OPERAND varchar(255) NOT NULL DEFAULT ''
