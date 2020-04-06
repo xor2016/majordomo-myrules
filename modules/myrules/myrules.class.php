@@ -18,7 +18,7 @@ class myrules extends module {
 */
 function __construct() {
   $this->name="myrules";
-  $this->title="Мои Правила 2";
+  $this->title="Мои Правила";
   $this->module_category="<#LANG_SECTION_OBJECTS#>";
   $this->checkInstalled();
 }
